@@ -45,9 +45,19 @@ main {
     margin-left: 34px;
 }
 
-.box-card {
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.card {
     width: 117px;
     height: 146px;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,11 +66,21 @@ main {
     border-radius: 5px;
     margin-bottom: 34px;
     margin-right: 34px;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
 }
 
-.card-front {
-    width: 100px;
-    height: 100px;
+.back-face {
+    transform: rotateY(180deg);
+}
+
+.card:hover .back-face {
+    transform: rotateY(0deg);
+}
+
+.card:hover .front-face {
+    transform: rotateY(-180deg);
 }
 
 @media (max-width: 636px) {
