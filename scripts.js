@@ -20,18 +20,17 @@ function renderizeCards(numCards) {
     let randomizedCards = [];
     const addCards = document.querySelector(".main-box-aux");
 
-    for(let i=0; i<=(numCards/2); i++) {
+    for(let i=0; i<(numCards/2); i++) {
         randomizedCards.push(cardsArray[i]);
         randomizedCards.push(cardsArray[i]);
     }
 
     randomizedCards.sort(comparador);
 
-    for(i=0; i<=numCards; i++) {
+    for(i=0; i<numCards; i++) {
         addCards.innerHTML += `
             <div class="card" data-identifier="card">
-                <div class="front-face face" data-identifier="front-face"><img src="images/front.png"></div>
-                <div class="back-face face" data-identifier="back-face"><img src="${randomizedCards[i]}></div>
+                <img src="images/front.png">
             </div>
         `;
     }
