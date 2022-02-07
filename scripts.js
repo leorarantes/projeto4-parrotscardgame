@@ -1,5 +1,5 @@
 const cardsArray = ["images/bobrossparrot.gif", "images/tripletsparrot.gif", "images/revertitparrot.gif", "images/metalparrot.gif", "images/fiestaparrot.gif", "images/explodyparrot.gif", "images/unicornparrot.gif"];
-let clickedCards = 0;
+let check = 0;
 
 function comparador() { 
 	return Math.random() - 0.5; 
@@ -43,16 +43,42 @@ function transition(num) {
     const backFace = document.querySelector(`.card${num} .back-face`);
     const frontFaceAux = document.querySelector(`.card${num} .front-face-transition`);
     const backFaceAux = document.querySelector(`.card${num} .back-face-transition`);
+    let cardSelected = document.querySelector(".selected");
 
-    if((frontFaceAux == null) && (backFaceAux == null) && (clickedCards < 2)) {
+    if((frontFaceAux == null) && (backFaceAux == null)) {
         frontFace.classList.add("front-face-transition");
         backFace.classList.add("back-face-transition");
-        clickedCards++;
+
+        if(cardSelected !== null) {
+            cardSelected = document.querySelector(".selected .back-face");
+            if(cardSelected.innerHTML == backFace.innerHTML) {
+                cardSelected = document.querySelector(".selected");
+                cardSelected.classList.remove("selected");
+                check++;
+            }
+            else {
+                setTimeout(removeSelected, 1000);
+                cardSelected = document.querySelector(`.card${num}`);
+                cardSelected.classList.add("selected");
+                setTimeout(removeSelected, 1000);
+            }            
+        } else {
+            cardSelected = document.querySelector(`.card${num}`); 
+            cardSelected.classList.add("selected");
+        }
     }
+}
+
+function removeSelected() {
+    let selected = document.querySelector(".selected");
+    if(selected !== null) {
+        selected = document.querySelector(".selected .front-face");
+        selected.classList.remove("front-face-transition");
     
-    if((frontFaceAux !== null) || (backFaceAux !== null)) {
-        frontFace.classList.remove("front-face-transition");
-        backFace.classList.remove("back-face-transition");
-        clickedCards--;
+        selected = document.querySelector(".selected .back-face");
+        selected.classList.remove("back-face-transition");
+    
+        selected = document.querySelector(".selected");
+        selected.classList.remove("selected");
     }
 }

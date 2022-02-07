@@ -86,6 +86,10 @@ img {
     transform: rotateY(-180deg);
 }
 
+.selected {
+    border-radius: 5px;
+}
+
 @media (max-width: 636px) {
     h1 {
         font-size: 48px;
